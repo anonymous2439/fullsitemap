@@ -1,3 +1,57 @@
+<html>
+	<head>
+		<style>
+			.wrapper{
+				width:1375px;
+				margin:auto;
+			}
+			.results{
+				text-align:center;
+			}
+			#banners{
+				display:flex;
+				flex-wrap:wrap;
+			}
+			#banners section{
+				margin:10px;
+				border: 1px solid #c4c4c4;
+				padding:5px;
+				width:30%;
+				text-align:center;
+			}
+			#banners section img {
+				width: 310px;
+				height: auto;
+				display:block;
+				margin:auto;
+			}
+			#banners section a{
+				display:inline-block;
+				width:310px;
+				min-height:36px;
+				padding:5px;
+			}
+			.duplicate{
+				background:red;
+			}
+			form{
+				text-align:center;
+			}
+			form input{
+				width:300px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<form method="get">
+				<input type="text" name="search_data">
+				<button type="submit" name="search_submit">Search non-home banner images</button>
+			</form>
+		</div>
+	</body>
+</html>
 <?php
 	if(isset($_GET['search_submit'])){
 		function get_inner_html( $node ) 
@@ -24,7 +78,7 @@
 
 		$elements = $xpath->query('//div[@class="entry-content"]/ul/li/a');
 		$elements2 = $xpath->query('//div[@class="entry-content"]/ul/li/ul/li/a');
-		echo ($elements->length+$elements2->length-1).'<br>';
+		echo '<p class="results">'.($elements->length+$elements2->length-1).' results found!</p>';
 		$links = array();
 		if ($elements->length) {
 			foreach ($elements as $element)
@@ -87,46 +141,3 @@
 		//end
 	}
 ?>
-<html>
-	<head>
-		<style>
-			.wrapper{
-				width:1375px;
-				margin:auto;
-			}
-			#banners{
-				display:flex;
-				flex-wrap:wrap;
-			}
-			#banners section{
-				margin:10px;
-				border: 1px solid #c4c4c4;
-				padding:5px;
-				width:30%;
-				text-align:center;
-			}
-			#banners section img {
-				width: 310px;
-				height: auto;
-				display:block;
-				margin:auto;
-			}
-			#banners section a{
-				display:inline-block;
-				width:310px;
-				min-height:36px;
-				padding:5px;
-			}
-			.duplicate{
-				background:red;
-			}
-			
-		</style>
-	</head>
-	<body>
-		<form method="get">
-			<input type="text" name="search_data" value="<?php $_GET['search_data'];?>">
-			<button type="submit" name="search_submit">Search</button>
-		</form>
-	</body>
-</html>
