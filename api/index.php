@@ -102,7 +102,7 @@
 		echo '<div class="wrapper"><div id="banners">';
 		$link_count = 0;
 		foreach($links as $link){
-			if($link != str_replace('https','http',$_GET['search_data']) && $link != str_replace('https','http',$_GET['search_data'].'/')){
+			if($link != str_replace('https','http',$_GET['search_data']) && $link != str_replace('https','http',$_GET['search_data'].'/') && $link != str_replace('https','http',$_GET['search_data'].'/home')){
 				$dom->loadHtmlFile($link);
 				$xpath = new DOMXPath($dom);
 				$elements = $xpath->query('//*[@class="non_ban_img"]/img');
