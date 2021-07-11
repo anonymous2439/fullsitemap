@@ -102,7 +102,7 @@
 		echo '<div class="wrapper"><div id="banners">';
 		$link_count = 0;
 		foreach($links as $link){
-			if($link != str_replace('https','http',$_GET['search_data']) && $link != str_replace('https','http',$_GET['search_data'].'/') && $link != str_replace('https','http',$_GET['search_data'].'/home')){
+			if($link != str_replace('https','http',$_GET['search_data']) && $link != str_replace('https','http',$_GET['search_data'].'/') && $link != str_replace('https','http',$_GET['search_data'].'home')){
 				$dom->loadHtmlFile($link);
 				$xpath = new DOMXPath($dom);
 				$elements = $xpath->query('//*[@class="non_ban_img"]/img');
@@ -110,26 +110,6 @@
 				preg_match("/[^\/]+$/", $elements->item(0)->getAttribute('src'), $matches);
 				$image_filename = $matches[0];
 				array_push($images, $image_filename);
-
-				/*$link_count2 = 0;
-				foreach($links as $link2){
-					$dom->loadHtmlFile($link2);
-					$xpath = new DOMXPath($dom);
-					$elements = $xpath->query('//*[@class="non_ban_img"]/img');
-					preg_match("/[^\/]+$/", $elements->item(0)->getAttribute('src'), $matches2);
-					$image_filename2 = $matches2[0];
-					if($image_filename == $image_filename2 && $link_count2 != $link_count ){
-						echo '<section class="duplicate"><a href="'.$link.'">'.$link.'-'.$image_filename.'-'.$image_filename2.'</a>';
-						break;
-					}
-					else{
-						$link_count2++;
-						continue;
-					}
-					echo '<section><a href="'.$link.'">'.$link.'</a>';
-					$link_count2++;
-				}*/
-				
 				
 				echo '<section><a href="'.$link.'">'.$link.'</a>';
 				echo $dom->saveHTML($elements->item(0));
